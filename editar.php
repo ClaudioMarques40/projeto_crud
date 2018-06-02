@@ -40,7 +40,7 @@
       <br>
       <?php include_once("inc/alerts.php"); ?>
         <form action="editar.php" method="POST">
-          <input type="text" name="id" value="<?=$prod['id']?>">
+          <input type="hidden" name="id" value="<?=$prod['id']?>">
           <div class="form-row">
             <!-- produto -->
             <div class="form-group col-md-12">

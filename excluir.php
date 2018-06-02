@@ -13,4 +13,3 @@
         }
    }
 ?>
-<!-- <a  href="excluir.php?id=<?= $prod["id"]?>"> Excluir </a> -->

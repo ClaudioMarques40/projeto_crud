@@ -14,8 +14,24 @@ function getConnection(){
     return  mysqli_connect($host, $user, $pass, $database);
 }
 
+function getCategories ($conn) {
+  $query = "SELECT * FROM categorias";
+  return mysqli_query($conn, $query);
+  // var_dump( mysqli_fetch_assoc($result) ); // posicao nominal
+  // var_dump( mysqli_fetch_array($result)[1 ou 'id' ]); posicao relativa
+}
+
+function getCategoria ($result) {
+  return mysqli_fetch_assoc($result);
+}
+
 function getProduts ($conn) {
-  $query = "SELECT * FROM produtos";
+  $query = "SELECT p.id,    p.nome AS nome_produto,
+                   p.preco, p.quant,
+                   c.nome   AS nome_categoria
+            FROM       produtos   AS p
+            INNER JOIN categorias AS c
+            ON (p.id_categoria = c.id)";
   return mysqli_query($conn, $query);
   // var_dump( mysqli_fetch_assoc($result) ); // posicao nominal
   // var_dump( mysqli_fetch_array($result)[1 ou 'id' ]); posicao relativa
@@ -30,9 +46,9 @@ function getProdutById($conn, $id ) {
   return mysqli_query($conn, $query);
 }
 
-function addProduct($conn, $nome, $preco, $quant) {
-  $query = "INSERT INTO produtos (nome, preco, quant)
-      values ( '{$nome}', '{$preco}', '{$quant}' )";
+function addProduct($conn, $nome, $preco, $quant, $idcateg) {
+  $query = "INSERT INTO produtos (nome, preco, quant, id_categoria)
+      values ( '{$nome}', '{$preco}', '{$quant}' , '{$idcateg}' )";
   return mysqli_query($conn, $query);
 }
 
