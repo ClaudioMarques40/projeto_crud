@@ -9,6 +9,15 @@ class Produto {
   public $categoria;
   public $minEstoque = 50;
 
+  // construtor
+  function __construct($id, $nome, $preco, $quant, $categoria) {
+    $this->id = $id;
+    $this->nome = $nome;
+    $this->preco = $preco;
+    $this->quant = $quant;
+    $this->categoria = $categoria;
+  }
+
   // métodos
   private function formataMoeda($valor) {
     setlocale(LC_MONETARY, 'pt_BR');
